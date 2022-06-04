@@ -92,3 +92,47 @@ var j int8 = 0
 fmt.Println(j == a) /// true
 ```
 <br/> Block scope
+
+### Arrays:
+- Creation:
+```
+array := [3]int
+array := [...]int{95,934,86}
+len(array)
+
+adjacency matrix: adj := [3][3]int{[3]int{1,2,3,4},...}
+arr2 := array  // pass by value - make a copy so change in arr2 no effect on array 
+ar3 := &array // pass by pointer/address - side effect
+```
+- Continuous blocks of memory: Pointer to the beginning of the array, then loop over
+- Array is the collection of the **same** type data, **fixed** size
+
+### Slice:
+- **Mutable** size , Can slice creation or slice from array
+``` 
+slice := []int{1,2,3}
+array := [3]int{1,2,3}
+slice1 := array[:2]
+```
+- **_Pass by Reference_**
+- Creation: _built-in **make** function_
+```
+make(type of obj, length, [capacity])
+a := make([]int, 3)  // all elm = 0
+```
+- **Capacity** # **len**: capacity is the available memory, length is the real memory.
+If capacity == length, to add new elm, it copies to a new longer array to increase the capacity to make capacity > length
+``` 
+append(object to append, valueto append)
+a := []int{}
+a = append(a, 1,2,3,4,5)  // len = 5, capacity = 8  => duplicate 4
+```
+- Concatenation => Stack operation
+```
+a  = append(a, []int{2,3,5}...)  // add slice using spread operator
+b := a[:len(a)-a]  // change b => change a
+c := append(a[:2], a[3:]...)  // a = change in c + the rest
+=> Should use LOOP if take some random elm
+```
+
+
